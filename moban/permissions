@@ -1,0 +1,10 @@
+# 1. 将 Runtime 目录的所有权交给 PHP-FPM 用户
+sudo chown -R www-data:www-data /var/www/{{domainname}}/Application/Runtime
+
+# 2. 目录设置为 755
+sudo find /var/www/{{domainname}}/Application/Runtime \
+  -type d -exec chmod 755 {} \;
+
+# 3. 文件设置为 644
+sudo find /var/www/{{domainname}}/Application/Runtime \
+  -type f -exec chmod 644 {} \;

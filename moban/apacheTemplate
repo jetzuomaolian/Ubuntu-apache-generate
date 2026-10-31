@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+    ServerName {{miandomainname}}
+    ServerAlias {{subdomainnames}}
+
+    DocumentRoot {{rootpath}}
+
+    <Directory {{rootpath}}>
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+        DirectoryIndex index.php index.html
+    </Directory>
+
+
+
+    <FilesMatch "\.php$">
+        SetHandler "proxy:fcgi://127.0.0.1:9000"
+    </FilesMatch>
+
+    ErrorLog ${APACHE_LOG_DIR}/{{miandomainname}}-error.log
+    CustomLog ${APACHE_LOG_DIR}/{{miandomainname}}-access.log combined
+</VirtualHost>
